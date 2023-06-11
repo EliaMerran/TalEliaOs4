@@ -42,7 +42,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-g  "
 				},
 				{
 					"fragment" : "-std=gnu++14"
@@ -52,18 +52,10 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/cs/usr/suchetzky/os/TalEliaOs4/."
+					"path" : "/mnt/c/UniCode/os/TalEliaOs4/."
 				}
 			],
 			"language" : "CXX",
-			"languageStandard" : 
-			{
-				"backtraces" : 
-				[
-					1
-				],
-				"standard" : "14"
-			},
 			"sourceIndexes" : 
 			[
 				1,

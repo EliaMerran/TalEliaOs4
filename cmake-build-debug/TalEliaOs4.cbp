@@ -8,99 +8,101 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="TalEliaOs4">
-				<Option output="/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/TalEliaOs4" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/cs/usr/suchetzky/os/TalEliaOs4/."/>
-					<Add directory="/usr/include/c++/10"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
-					<Add directory="/usr/include/c++/10/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 TalEliaOs4"/>
-					<CompileFile command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="TalEliaOs4/fast">
-				<Option output="/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/TalEliaOs4" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/cs/usr/suchetzky/os/TalEliaOs4/."/>
-					<Add directory="/usr/include/c++/10"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
-					<Add directory="/usr/include/c++/10/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 TalEliaOs4/fast"/>
-					<CompileFile command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j6 -f &quot;/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TalEliaOs4">
+				<Option output="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/TalEliaOs4" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/UniCode/os/TalEliaOs4/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 TalEliaOs4"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TalEliaOs4/fast">
+				<Option output="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/TalEliaOs4" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/UniCode/os/TalEliaOs4/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 TalEliaOs4/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cs/usr/suchetzky/os/TalEliaOs4/MemoryConstants.h">
+		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/MemoryConstants.h">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/cs/usr/suchetzky/os/TalEliaOs4/PhysicalMemory.cpp">
+		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/PhysicalMemory.cpp">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/cs/usr/suchetzky/os/TalEliaOs4/PhysicalMemory.h">
+		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/PhysicalMemory.h">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/cs/usr/suchetzky/os/TalEliaOs4/SimpleTest.cpp">
+		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/SimpleTest.cpp">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/cs/usr/suchetzky/os/TalEliaOs4/VirtualMemory.cpp">
+		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/VirtualMemory.cpp">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/cs/usr/suchetzky/os/TalEliaOs4/VirtualMemory.h">
+		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/VirtualMemory.h">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/cs/usr/suchetzky/os/TalEliaOs4/CMakeLists.txt">
+		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

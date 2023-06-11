@@ -6,7 +6,6 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -39,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "TalEliaOs4::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-TalEliaOs4-Debug-7afa8a192aea9f4fd15c.json",
+					"jsonFile" : "target-TalEliaOs4-Debug-7f28076996f91d5ed59c.json",
 					"name" : "TalEliaOs4",
 					"projectIndex" : 0
 				}
@@ -49,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/cs/usr/suchetzky/os/TalEliaOs4/cmake-build-debug",
-		"source" : "/cs/usr/suchetzky/os/TalEliaOs4"
+		"build" : "/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug",
+		"source" : "/mnt/c/UniCode/os/TalEliaOs4"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 0
 	}
 }
