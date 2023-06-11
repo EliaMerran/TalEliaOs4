@@ -10,4 +10,4 @@ add_executable(TalEliaOs4
         PhysicalMemory.cpp
         PhysicalMemory.h
         SimpleTest.cpp
-        VirtualMemory.h)
+        VirtualMemory.h VirtualMemory.cpp)
