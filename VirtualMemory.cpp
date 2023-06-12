@@ -53,7 +53,6 @@ word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage)
   // step 1: if there is an empty frame, return it
   if (emptyFrameIndex != 0)
     {
-      int tmp = 5;
       return emptyFrameIndex;
     }
   // step 2: return the max depth + 1
@@ -64,6 +63,7 @@ word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage)
   // step 3 : find the farthest page
   findFarthestPage (0, 0, virtualAddress >> OFFSET_WIDTH, farthestPage,
                     &farthestFrameIndex, &maxDistance, 0);
+  printf ("%d\n",farthestFrameIndex);
   removeParentPointer (*farthestPage);
   return farthestFrameIndex;
 }
@@ -119,14 +119,14 @@ void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
     }
 }
 
-uint64_t min (uint64_t a, uint64_t b)
+int min (int a, int b)
 {
   if (a < b)
     return a;
   return b;
 }
 
-uint64_t abs (uint64_t a)
+int abs (int a)
 {
   if (a < 0)
     return -a;
@@ -140,9 +140,10 @@ findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtual
 {
   if (curDepth == TABLES_DEPTH - 1)
     {
-      uint64_t distance = min (
+      int distance = min (
           NUM_PAGES - abs (virtualAddress - currentAddress),
           abs (virtualAddress - currentAddress));
+      printf ("MIN: %d\n",min);
       if (distance > *maxDistance)
         {
           *maxDistance = distance;
