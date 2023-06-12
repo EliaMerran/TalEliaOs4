@@ -19,15 +19,23 @@ findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtual
                   uint64_t *maxDistance);
 void removeParentPointer (uint64_t farthestPage);
 
-word_t handlePageFault (uint64_t virtualAddress)
+word_t handlePageFault (uint64_t virtualAddress, int tableFromData)
 {
   uint64_t farthestPage;
   word_t FrameIndex = findFrameToEvict (virtualAddress, &farthestPage);
-  if (farthestPage != 0)
+
+  if (tableFromData == 1)
     {
-      PMevict (FrameIndex, farthestPage);
+      if (farthestPage != 0)
+        {
+          PMevict (FrameIndex, farthestPage);
+        }
+      PMrestore (FrameIndex, virtualAddress >> OFFSET_WIDTH);
     }
-  PMrestore (FrameIndex, virtualAddress >> OFFSET_WIDTH);
+  else
+    {
+      initFrame (FrameIndex);
+    }
   return FrameIndex;
 }
 
@@ -180,10 +188,10 @@ void getPhysicalAddress (uint64_t virtualAddress, uint64_t *physicalAddress)
         {
           // page not found
           //Handle bring page from disk
-          word_t newFrameIndex = handlePageFault (virtualAddressCopy);
+          word_t newFrameIndex = handlePageFault (virtualAddressCopy, i);
           PMwrite (address, newFrameIndex);
           value = newFrameIndex;
-          initFrame (newFrameIndex);
+          //initFrame (newFrameIndex);
 
         }
       frame_base = value * PAGE_SIZE;
