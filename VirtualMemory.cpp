@@ -6,9 +6,10 @@
 #include "PhysicalMemory.h"
 
 // TODO : Remove io stream !
+#include <cstdio>
 
 void initFrame (word_t FrameIndex);
-word_t findFrameToEvict (uint64_t virtualAddress, uint64_t *farthestPage);
+word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage);
 void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
                                 uint64_t *maxFrameUsed,
                                 uint64_t *emptyFrameIndex);
@@ -16,30 +17,31 @@ void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
 void
 findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtualAddress,
                   uint64_t *farthestPageAddress, uint64_t *farthestFrameIndex,
-                  uint64_t *maxDistance);
+                  uint64_t *maxDistance, uint64_t curDepth);
 void removeParentPointer (uint64_t farthestPage);
 
 word_t handlePageFault (uint64_t virtualAddress, int tableFromData)
 {
-  uint64_t farthestPage;
-  word_t FrameIndex = findFrameToEvict (virtualAddress, &farthestPage);
+  uint64_t farthestPage = 0;
+  word_t FrameIndex = findNewFrameIndex (virtualAddress, &farthestPage);
 
-  if (tableFromData == 1)
+  if (farthestPage != 0)
     {
-      if (farthestPage != 0)
-        {
-          PMevict (FrameIndex, farthestPage);
-        }
-      PMrestore (FrameIndex, virtualAddress >> OFFSET_WIDTH);
+      PMevict (FrameIndex, farthestPage);
     }
   else
     {
       initFrame (FrameIndex);
     }
+  if (tableFromData == 1)
+    {
+      PMrestore (FrameIndex, virtualAddress >> OFFSET_WIDTH);
+    }
+
   return FrameIndex;
 }
 
-word_t findFrameToEvict (uint64_t virtualAddress, uint64_t *farthestPage)
+word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage)
 {
   // step 1, 2 : find the max depth of the tree
   uint64_t maxFrameUsed = 0;
@@ -47,11 +49,11 @@ word_t findFrameToEvict (uint64_t virtualAddress, uint64_t *farthestPage)
   uint64_t emptyFrameIndex = 0;
   uint64_t farthestFrameIndex = 0;
   *farthestPage = 0;
-  findMaxDepthAndEmptyFrame (0,0, &maxFrameUsed, &emptyFrameIndex);
+  findMaxDepthAndEmptyFrame (0, 0, &maxFrameUsed, &emptyFrameIndex);
   // step 1: if there is an empty frame, return it
   if (emptyFrameIndex != 0)
     {
-      int tmp =5;
+      int tmp = 5;
       return emptyFrameIndex;
     }
   // step 2: return the max depth + 1
@@ -61,7 +63,7 @@ word_t findFrameToEvict (uint64_t virtualAddress, uint64_t *farthestPage)
     }
   // step 3 : find the farthest page
   findFarthestPage (0, 0, virtualAddress >> OFFSET_WIDTH, farthestPage,
-                    &farthestFrameIndex, &maxDistance);
+                    &farthestFrameIndex, &maxDistance, 0);
   removeParentPointer (*farthestPage);
   return farthestFrameIndex;
 }
@@ -93,11 +95,11 @@ void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
                                 uint64_t *maxFrameUsed,
                                 uint64_t *emptyFrameIndex)
 {
-  if (curDepth == TABLES_DEPTH)
+  if (curDepth == TABLES_DEPTH - 1)
     return;
   word_t value;
   bool emptyFrame = true;
-  for (int j = 0; j < PAGE_SIZE; ++j)
+  for (int j = 0; j < PAGE_SIZE; j++)
     {
       PMread (frameIndex * PAGE_SIZE + j, &value);
       if (value != 0)
@@ -123,6 +125,7 @@ uint64_t min (uint64_t a, uint64_t b)
     return a;
   return b;
 }
+
 uint64_t abs (uint64_t a)
 {
   if (a < 0)
@@ -133,10 +136,9 @@ uint64_t abs (uint64_t a)
 void
 findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtualAddress,
                   uint64_t *farthestPageAddress, uint64_t *farthestFrameIndex,
-                  uint64_t *maxDistance)
+                  uint64_t *maxDistance, uint64_t curDepth)
 {
-  //TODO: change stop condition
-  if (frameIndex == TABLES_DEPTH)
+  if (curDepth == TABLES_DEPTH - 1)
     {
       uint64_t distance = min (
           NUM_PAGES - abs (virtualAddress - currentAddress),
@@ -151,15 +153,16 @@ findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtual
     }
 
   word_t value;
-  for (int j = 0; j < PAGE_SIZE; ++j)
+  for (int j = 0; j < PAGE_SIZE; j++)
     {
       PMread (frameIndex * PAGE_SIZE + j, &value);
       if (value != 0)
         {
-          currentAddress <<= OFFSET_WIDTH;
-          currentAddress += j;
-          findFarthestPage (value, currentAddress, virtualAddress, farthestPageAddress,
-                            farthestFrameIndex, maxDistance);
+          uint64_t updatedAddress = currentAddress << OFFSET_WIDTH;
+          updatedAddress += j;
+
+          findFarthestPage (value, updatedAddress, virtualAddress, farthestPageAddress,
+                            farthestFrameIndex, maxDistance, curDepth + 1);
         }
     }
 }
@@ -183,7 +186,7 @@ void getPhysicalAddress (uint64_t virtualAddress, uint64_t *physicalAddress)
       // cast frame_base to word_t* to use PMread
       uint64_t address = frame_base + partitions[i];
       word_t value;
-      PMread (address, (word_t *) &value);
+      PMread (address, &value);
       if (value == 0)
         {
           // page not found
@@ -191,8 +194,6 @@ void getPhysicalAddress (uint64_t virtualAddress, uint64_t *physicalAddress)
           word_t newFrameIndex = handlePageFault (virtualAddressCopy, i);
           PMwrite (address, newFrameIndex);
           value = newFrameIndex;
-          //initFrame (newFrameIndex);
-
         }
       frame_base = value * PAGE_SIZE;
     }
@@ -200,39 +201,6 @@ void getPhysicalAddress (uint64_t virtualAddress, uint64_t *physicalAddress)
   *physicalAddress = frame_base + partitions[0];
 }
 
-//void getPhysicalAddress(uint64_t virtualAddress, uint64_t *physicalAddress)
-//{
-//  int num_partitions = TABLES_DEPTH + 1;
-//  uint64_t partitions[num_partitions];
-//  // split the virtual address into partitions of OFFSET_WIDTH bits
-//  uint64_t mask = (1 << OFFSET_WIDTH) - 1; // ..00001111
-//  for (int i = 0; i < num_partitions; i++)
-//    {
-//      partitions[i] = virtualAddress & mask;
-//      virtualAddress >>= OFFSET_WIDTH;
-//    }
-//  // get the physical address of the page table
-//  uint64_t frame_base = 0;
-//  for (int i = num_partitions - 1; i > 0; i--)
-//    {
-//      // cast frame_base to word_t* to use PMread
-//      uint64_t address = frame_base + partitions[i];
-//      PMread(address, (word_t*) &frame_base);
-//      if (frame_base == 0)
-//        {
-//          // page not found
-//          //Handle bring page from disk
-//          word_t newFrameIndex = handlePageFault (virtualAddress);
-//          PMwrite (address, newFrameIndex);
-//          frame_base = newFrameIndex;
-//          initFrame (newFrameIndex);
-//
-//        }
-//      frame_base *= PAGE_SIZE;
-//    }
-//  // get the physical address of the page
-//  *physicalAddress = frame_base + partitions[0];
-//}
 void initFrame (word_t FrameIndex)
 {
   for (int i = 0; i < PAGE_SIZE; i++)
