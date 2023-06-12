@@ -17,7 +17,7 @@ void PMread(uint64_t physicalAddress, word_t* value) {
     if (RAM.empty()) {
         initialize();
     }
-  printf("physicalAddress: %d, RAM_SIZE: %d\n", physicalAddress, RAM_SIZE);
+//  printf("physicalAddress: %d, RAM_SIZE: %d\n", physicalAddress, RAM_SIZE);
     assert(physicalAddress < RAM_SIZE);
 
     uint64_t frameIndex = physicalAddress / PAGE_SIZE;

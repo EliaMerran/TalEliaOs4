@@ -8,101 +8,101 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
+				<Option working_dir="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="TalEliaOs4">
-				<Option output="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/TalEliaOs4" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
+				<Option output="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/TalEliaOs4.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/mnt/c/UniCode/os/TalEliaOs4/."/>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/."/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 TalEliaOs4"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 TalEliaOs4"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="TalEliaOs4/fast">
-				<Option output="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/TalEliaOs4" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug"/>
+				<Option output="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/TalEliaOs4.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/mnt/c/UniCode/os/TalEliaOs4/."/>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/."/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 TalEliaOs4/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/UniCode/os/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 TalEliaOs4/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/MemoryConstants.h">
+		<Unit filename="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/MemoryConstants.h">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/PhysicalMemory.cpp">
+		<Unit filename="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/PhysicalMemory.cpp">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/PhysicalMemory.h">
+		<Unit filename="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/PhysicalMemory.h">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/SimpleTest.cpp">
+		<Unit filename="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/SimpleTest.cpp">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/VirtualMemory.cpp">
+		<Unit filename="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/VirtualMemory.cpp">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/VirtualMemory.h">
+		<Unit filename="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/VirtualMemory.h">
 			<Option target="TalEliaOs4"/>
 		</Unit>
-		<Unit filename="/mnt/c/UniCode/os/TalEliaOs4/CMakeLists.txt">
+		<Unit filename="C:/Users/talsu/Desktop/UNIVERSITY/HUJI/year_2/Smester 2/OS/TalEliaOs4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

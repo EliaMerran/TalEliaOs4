@@ -9,45 +9,52 @@
 
 void initFrame (word_t FrameIndex);
 word_t findFrameToEvict (uint64_t virtualAddress, uint64_t *farthestPage);
-void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t *depth, uint64_t *emptyFrameIndex);
-void findFarthestPage(uint64_t frameIndex, uint64_t currentAddress, uint64_t virtualAddress,
-                      uint64_t *farthestPageAddress, uint64_t * farthestFrameIndex,
-                      uint64_t *maxDistance);
+void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
+                                uint64_t *maxFrameUsed,
+                                uint64_t *emptyFrameIndex);
 
+void
+findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtualAddress,
+                  uint64_t *farthestPageAddress, uint64_t *farthestFrameIndex,
+                  uint64_t *maxDistance);
 void removeParentPointer (uint64_t farthestPage);
-word_t handlePageFault(uint64_t virtualAddress)
+
+word_t handlePageFault (uint64_t virtualAddress)
 {
   uint64_t farthestPage;
-  word_t FrameIndex = findFrameToEvict(virtualAddress, &farthestPage);
+  word_t FrameIndex = findFrameToEvict (virtualAddress, &farthestPage);
   if (farthestPage != 0)
     {
-      PMevict(FrameIndex, farthestPage);
+      PMevict (FrameIndex, farthestPage);
     }
   PMrestore (FrameIndex, virtualAddress >> OFFSET_WIDTH);
+  return FrameIndex;
 }
+
 word_t findFrameToEvict (uint64_t virtualAddress, uint64_t *farthestPage)
 {
   // step 1, 2 : find the max depth of the tree
-  uint64_t maxDepth = 0;
+  uint64_t maxFrameUsed = 0;
   uint64_t maxDistance = 0;
   uint64_t emptyFrameIndex = 0;
   uint64_t farthestFrameIndex = 0;
   *farthestPage = 0;
-  findMaxDepthAndEmptyFrame (0, &maxDepth, &emptyFrameIndex);
+  findMaxDepthAndEmptyFrame (0,0, &maxFrameUsed, &emptyFrameIndex);
   // step 1: if there is an empty frame, return it
   if (emptyFrameIndex != 0)
     {
+      int tmp =5;
       return emptyFrameIndex;
     }
   // step 2: return the max depth + 1
-  if (maxDepth + 1 < NUM_FRAMES)
+  if (maxFrameUsed + 1 < NUM_FRAMES)
     {
-      return maxDepth + 1;
+      return maxFrameUsed + 1;
     }
   // step 3 : find the farthest page
-  findFarthestPage(0, 0, virtualAddress >> OFFSET_WIDTH, farthestPage,
-                   &farthestFrameIndex, &maxDistance);
-  removeParentPointer(*farthestPage);
+  findFarthestPage (0, 0, virtualAddress >> OFFSET_WIDTH, farthestPage,
+                    &farthestFrameIndex, &maxDistance);
+  removeParentPointer (*farthestPage);
   return farthestFrameIndex;
 }
 void removeParentPointer (uint64_t farthestPage)
@@ -66,18 +73,19 @@ void removeParentPointer (uint64_t farthestPage)
   for (int i = num_partitions - 1; i > 1; i--)
     {
       // cast frame_base to word_t* to use PMread
-      PMread(frame_base + partitions[i], (word_t*) &frame_base);
+      PMread (frame_base + partitions[i], (word_t *) &frame_base);
       frame_base *= PAGE_SIZE;
     }
 
   // remove the parent pointer
-  PMwrite(frame_base + partitions[1], 0);
+  PMwrite (frame_base + partitions[1], 0);
 }
 
-void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t *depth,
+void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
+                                uint64_t *maxFrameUsed,
                                 uint64_t *emptyFrameIndex)
 {
-  if (frameIndex == TABLES_DEPTH)
+  if (curDepth == TABLES_DEPTH)
     return;
   word_t value;
   bool emptyFrame = true;
@@ -87,11 +95,12 @@ void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t *depth,
       if (value != 0)
         {
           emptyFrame = false;
-          if (value > *depth)
+          if (value > *maxFrameUsed)
             {
-              *depth = value;
+              *maxFrameUsed = value;
             }
-          findMaxDepthAndEmptyFrame (value, depth, emptyFrameIndex);
+          findMaxDepthAndEmptyFrame (value, curDepth + 1, maxFrameUsed,
+                                     emptyFrameIndex);
         }
     }
   if (emptyFrame && frameIndex != 0)
@@ -100,33 +109,36 @@ void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t *depth,
     }
 }
 
-uint64_t min(uint64_t a, uint64_t b)
+uint64_t min (uint64_t a, uint64_t b)
 {
   if (a < b)
     return a;
   return b;
 }
-uint64_t abs(uint64_t a)
+uint64_t abs (uint64_t a)
 {
   if (a < 0)
     return -a;
   return a;
 }
 
-void findFarthestPage(uint64_t frameIndex, uint64_t currentAddress, uint64_t virtualAddress,
-                      uint64_t *farthestPageAddress, uint64_t * farthestFrameIndex,
-                      uint64_t *maxDistance)
+void
+findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtualAddress,
+                  uint64_t *farthestPageAddress, uint64_t *farthestFrameIndex,
+                  uint64_t *maxDistance)
 {
+  //TODO: change stop condition
   if (frameIndex == TABLES_DEPTH)
     {
-      uint64_t distance = min (NUM_PAGES - abs (virtualAddress - currentAddress),
-                      abs (virtualAddress - currentAddress));
-     if (distance > *maxDistance)
-       {
-         *maxDistance = distance;
-         *farthestPageAddress = currentAddress;
-         *farthestFrameIndex = frameIndex;
-       }
+      uint64_t distance = min (
+          NUM_PAGES - abs (virtualAddress - currentAddress),
+          abs (virtualAddress - currentAddress));
+      if (distance > *maxDistance)
+        {
+          *maxDistance = distance;
+          *farthestPageAddress = currentAddress;
+          *farthestFrameIndex = frameIndex;
+        }
       return;
     }
 
@@ -138,13 +150,13 @@ void findFarthestPage(uint64_t frameIndex, uint64_t currentAddress, uint64_t vir
         {
           currentAddress <<= OFFSET_WIDTH;
           currentAddress += j;
-          findFarthestPage(value, currentAddress, virtualAddress, farthestPageAddress,
-                           farthestFrameIndex, maxDistance);
+          findFarthestPage (value, currentAddress, virtualAddress, farthestPageAddress,
+                            farthestFrameIndex, maxDistance);
         }
     }
 }
 
-void getPhysicalAddress(uint64_t virtualAddress, uint64_t *physicalAddress)
+void getPhysicalAddress (uint64_t virtualAddress, uint64_t *physicalAddress)
 {
   uint64_t virtualAddressCopy = virtualAddress;
   int num_partitions = TABLES_DEPTH + 1;
@@ -163,7 +175,7 @@ void getPhysicalAddress(uint64_t virtualAddress, uint64_t *physicalAddress)
       // cast frame_base to word_t* to use PMread
       uint64_t address = frame_base + partitions[i];
       word_t value;
-      PMread(address, (word_t*) &value);
+      PMread (address, (word_t *) &value);
       if (value == 0)
         {
           // page not found
@@ -179,7 +191,6 @@ void getPhysicalAddress(uint64_t virtualAddress, uint64_t *physicalAddress)
   // get the physical address of the page
   *physicalAddress = frame_base + partitions[0];
 }
-
 
 //void getPhysicalAddress(uint64_t virtualAddress, uint64_t *physicalAddress)
 //{
@@ -225,7 +236,7 @@ void initFrame (word_t FrameIndex)
 /*
  * Initialize the virtual memory.
  */
-void VMinitialize()
+void VMinitialize ()
 {
   initFrame (0);
 }
@@ -237,17 +248,14 @@ void VMinitialize()
  * returns 0 on failure (if the address cannot be mapped to a physical
  * address for any reason)
  */
-int VMread(uint64_t virtualAddress, word_t* value)
+int VMread (uint64_t virtualAddress, word_t *value)
 {
   uint64_t physicalAddress;
   getPhysicalAddress (virtualAddress, &physicalAddress);
   // read the value from the physical address
-  PMread(physicalAddress, value);
+  PMread (physicalAddress, value);
   return 1;
 }
-
-
-
 
 /* Writes a word to the given virtual address.
  *
@@ -255,11 +263,11 @@ int VMread(uint64_t virtualAddress, word_t* value)
  * returns 0 on failure (if the address cannot be mapped to a physical
  * address for any reason)
  */
-int VMwrite(uint64_t virtualAddress, word_t value)
+int VMwrite (uint64_t virtualAddress, word_t value)
 {
   uint64_t physicalAddress = 0;
   getPhysicalAddress (virtualAddress, &physicalAddress);
   // read the value from the physical address
-  PMwrite(physicalAddress, value);
+  PMwrite (physicalAddress, value);
   return 1;
 }
