@@ -7,12 +7,13 @@
 
 // TODO : Remove io stream !
 #include <cstdio>
+#include <algorithm>
 
 void initFrame (word_t FrameIndex);
-word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage);
+word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,uint64_t dontUseFrameIndex);
 void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
                                 uint64_t *maxFrameUsed,
-                                uint64_t *emptyFrameIndex);
+                                uint64_t *emptyFrameIndex, uint64_t dontUseFrameIndex);
 
 void
 findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtualAddress,
@@ -20,10 +21,10 @@ findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtual
                   uint64_t *maxDistance, uint64_t curDepth);
 void removeParentPointer (uint64_t farthestPage);
 
-word_t handlePageFault (uint64_t virtualAddress, int tableFromData)
+word_t handlePageFault (uint64_t virtualAddress, int tableFromData,uint64_t dontUseFrameIndex)
 {
   uint64_t farthestPage = 0;
-  word_t FrameIndex = findNewFrameIndex (virtualAddress, &farthestPage);
+  word_t FrameIndex = findNewFrameIndex (virtualAddress, &farthestPage,dontUseFrameIndex);
 
   if (farthestPage != 0)
     {
@@ -41,7 +42,8 @@ word_t handlePageFault (uint64_t virtualAddress, int tableFromData)
   return FrameIndex;
 }
 
-word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage)
+word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,
+                          uint64_t dontUseFrameIndex)
 {
   // step 1, 2 : find the max depth of the tree
   uint64_t maxFrameUsed = 0;
@@ -49,7 +51,7 @@ word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage)
   uint64_t emptyFrameIndex = 0;
   uint64_t farthestFrameIndex = 0;
   *farthestPage = 0;
-  findMaxDepthAndEmptyFrame (0, 0, &maxFrameUsed, &emptyFrameIndex);
+  findMaxDepthAndEmptyFrame (0, 0, &maxFrameUsed, &emptyFrameIndex,dontUseFrameIndex);
   // step 1: if there is an empty frame, return it
   if (emptyFrameIndex != 0)
     {
@@ -63,7 +65,6 @@ word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage)
   // step 3 : find the farthest page
   findFarthestPage (0, 0, virtualAddress >> OFFSET_WIDTH, farthestPage,
                     &farthestFrameIndex, &maxDistance, 0);
-  printf ("%d\n",farthestFrameIndex);
   removeParentPointer (*farthestPage);
   return farthestFrameIndex;
 }
@@ -93,9 +94,10 @@ void removeParentPointer (uint64_t farthestPage)
 
 void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
                                 uint64_t *maxFrameUsed,
-                                uint64_t *emptyFrameIndex)
+                                uint64_t *emptyFrameIndex,
+                                uint64_t dontUseFrameIndex)
 {
-  if (curDepth == TABLES_DEPTH - 1)
+  if (curDepth == TABLES_DEPTH)
     return;
   word_t value;
   bool emptyFrame = true;
@@ -110,16 +112,16 @@ void findMaxDepthAndEmptyFrame (uint64_t frameIndex, uint64_t curDepth,
               *maxFrameUsed = value;
             }
           findMaxDepthAndEmptyFrame (value, curDepth + 1, maxFrameUsed,
-                                     emptyFrameIndex);
+                                     emptyFrameIndex, dontUseFrameIndex);
         }
     }
-  if (emptyFrame && frameIndex != 0)
+  if (emptyFrame && frameIndex != 0 && frameIndex != dontUseFrameIndex)
     {
       *emptyFrameIndex = frameIndex;
     }
 }
 
-int min (int a, int b)
+uint64_t min (uint64_t  a, uint64_t  b)
 {
   if (a < b)
     return a;
@@ -138,12 +140,12 @@ findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtual
                   uint64_t *farthestPageAddress, uint64_t *farthestFrameIndex,
                   uint64_t *maxDistance, uint64_t curDepth)
 {
-  if (curDepth == TABLES_DEPTH - 1)
+  if (curDepth == TABLES_DEPTH)
     {
-      int distance = min (
+      uint64_t distance = min (
           NUM_PAGES - abs (virtualAddress - currentAddress),
           abs (virtualAddress - currentAddress));
-      printf ("MIN: %d\n",min);
+
       if (distance > *maxDistance)
         {
           *maxDistance = distance;
@@ -192,8 +194,13 @@ void getPhysicalAddress (uint64_t virtualAddress, uint64_t *physicalAddress)
         {
           // page not found
           //Handle bring page from disk
-          word_t newFrameIndex = handlePageFault (virtualAddressCopy, i);
+          word_t newFrameIndex = handlePageFault (virtualAddressCopy, i,
+                                                  frame_base/PAGE_SIZE);
           PMwrite (address, newFrameIndex);
+          printf ("virtual address: %d\n",virtualAddressCopy);
+          printf ("address: %d\n",address);
+          printf ("new Index Frame: %d\n",newFrameIndex);
+
           value = newFrameIndex;
         }
       frame_base = value * PAGE_SIZE;
@@ -245,6 +252,7 @@ int VMwrite (uint64_t virtualAddress, word_t value)
   uint64_t physicalAddress = 0;
   getPhysicalAddress (virtualAddress, &physicalAddress);
   // read the value from the physical address
+  printf ("WRITE data address:%d, Value: %d \n",physicalAddress,value);
   PMwrite (physicalAddress, value);
   return 1;
 }
