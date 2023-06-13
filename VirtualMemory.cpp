@@ -1,13 +1,8 @@
-//
-// Created by suchetzky on 6/11/23.
-//
+
 #pragma once
 #include "VirtualMemory.h"
-#include "PhysicalMemory.h"
+#include "PhysicalMemoryOriginal.h"
 
-// TODO : Remove io stream !
-#include <cstdio>
-#include <algorithm>
 
 void initFrame (word_t FrameIndex);
 word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,uint64_t dontUseFrameIndex);
@@ -19,7 +14,9 @@ void
 findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtualAddress,
                   uint64_t *farthestPageAddress, uint64_t *farthestFrameIndex,
                   uint64_t *maxDistance, uint64_t curDepth);
-void removeParentPointer (uint64_t farthestPage);
+void removeParentOfFarthest (uint64_t farthestPage);
+void removeParentOfFrame(uint64_t frameIndex,uint64_t curDepth, uint64_t
+deletedFrame);
 
 word_t handlePageFault (uint64_t virtualAddress, int tableFromData,uint64_t dontUseFrameIndex)
 {
@@ -28,14 +25,15 @@ word_t handlePageFault (uint64_t virtualAddress, int tableFromData,uint64_t dont
 
   if (farthestPage != -1)
     {
-      printf ("I AM EVICTED: %d, INDEX: %d\n",farthestPage<<OFFSET_WIDTH,FrameIndex);
+      //printf ("I AM EVICTED: %d, INDEX: %d\n",farthestPage<<OFFSET_WIDTH,
+       //        FrameIndex);
       PMevict (FrameIndex, (farthestPage<<OFFSET_WIDTH)/PAGE_SIZE);
     }
   initFrame (FrameIndex);
   if (tableFromData == 1)
     {
-      printf ("I WILL RESTORE: %d, INDEX: %d\n",(virtualAddress >> OFFSET_WIDTH)/PAGE_SIZE,FrameIndex);
-      PMrestore (FrameIndex, (virtualAddress >> OFFSET_WIDTH)/PAGE_SIZE);
+//      printf ("I WILL RESTORE: %d, INDEX: %d\n",(virtualAddress)/PAGE_SIZE,FrameIndex);
+      PMrestore (FrameIndex, (virtualAddress)/PAGE_SIZE);
     }
 
   return FrameIndex;
@@ -53,6 +51,7 @@ word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,
   // step 1: if there is an empty frame, return it
   if (emptyFrameIndex != 0)
     {
+      removeParentOfFrame(0,0,emptyFrameIndex);
       return emptyFrameIndex;
     }
   // step 2: return the max depth + 1
@@ -63,10 +62,33 @@ word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,
   // step 3 : find the farthest page
   findFarthestPage (0, 0, virtualAddress >> OFFSET_WIDTH, farthestPage,
                     &farthestFrameIndex, &maxDistance, 0);
-  removeParentPointer (*farthestPage);
+  removeParentOfFarthest ((*farthestPage) << OFFSET_WIDTH);
   return farthestFrameIndex;
 }
-void removeParentPointer (uint64_t farthestPage)
+
+void removeParentOfFrame(uint64_t frameIndex,uint64_t curDepth, uint64_t
+deletedFrame)
+{
+  if (curDepth == TABLES_DEPTH)
+    return;
+  word_t value;
+  bool emptyFrame = true;
+  for (int j = 0; j < PAGE_SIZE; j++)
+    {
+      PMread (frameIndex * PAGE_SIZE + j, &value);
+      if (value != 0)
+        {
+          if(value == deletedFrame)
+            {
+              PMwrite (frameIndex * PAGE_SIZE + j,0);
+              return;
+            }
+          removeParentOfFrame (value, curDepth + 1,deletedFrame);
+        }
+    }
+}
+
+void removeParentOfFarthest (uint64_t farthestPage)
 {
   int num_partitions = TABLES_DEPTH + 1;
   uint64_t partitions[num_partitions];
@@ -195,9 +217,9 @@ void getPhysicalAddress (uint64_t virtualAddress, uint64_t *physicalAddress)
           word_t newFrameIndex = handlePageFault (virtualAddressCopy, i,
                                                   frame_base/PAGE_SIZE);
           PMwrite (address, newFrameIndex);
-          printf ("virtual address: %d\n",virtualAddressCopy);
-          printf ("address: %d\n",address);
-          printf ("new Index Frame: %d\n",newFrameIndex);
+//          printf ("virtual address: %d\n",virtualAddressCopy);
+//          printf ("address: %d\n",address);
+//          printf ("new Index Frame: %d\n",newFrameIndex);
 
           value = newFrameIndex;
         }
@@ -250,7 +272,7 @@ int VMwrite (uint64_t virtualAddress, word_t value)
   uint64_t physicalAddress = 0;
   getPhysicalAddress (virtualAddress, &physicalAddress);
   // read the value from the physical address
-  printf ("WRITE data address:%d, Value: %d \n",physicalAddress,value);
+//  printf ("WRITE data address:%d, Value: %d \n",physicalAddress,value);
   PMwrite (physicalAddress, value);
   return 1;
 }

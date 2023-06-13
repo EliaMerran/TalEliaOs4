@@ -116,24 +116,94 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named TalEliaOs4
+# Target rules for targets named VirtualMemory
 
 # Build rule for target.
-TalEliaOs4: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TalEliaOs4
-.PHONY : TalEliaOs4
+VirtualMemory: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 VirtualMemory
+.PHONY : VirtualMemory
 
 # fast build rule for target.
-TalEliaOs4/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/build
-.PHONY : TalEliaOs4/fast
+VirtualMemory/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VirtualMemory.dir\build.make CMakeFiles/VirtualMemory.dir/build
+.PHONY : VirtualMemory/fast
+
+#=============================================================================
+# Target rules for targets named TestVirtualMemory
+
+# Build rule for target.
+TestVirtualMemory: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TestVirtualMemory
+.PHONY : TestVirtualMemory
+
+# fast build rule for target.
+TestVirtualMemory/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TestVirtualMemory.dir\build.make CMakeFiles/TestVirtualMemory.dir/build
+.PHONY : TestVirtualMemory/fast
+
+#=============================================================================
+# Target rules for targets named OffsetDifferentThanIndexMemory
+
+# Build rule for target.
+OffsetDifferentThanIndexMemory: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 OffsetDifferentThanIndexMemory
+.PHONY : OffsetDifferentThanIndexMemory
+
+# fast build rule for target.
+OffsetDifferentThanIndexMemory/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\OffsetDifferentThanIndexMemory.dir\build.make CMakeFiles/OffsetDifferentThanIndexMemory.dir/build
+.PHONY : OffsetDifferentThanIndexMemory/fast
+
+#=============================================================================
+# Target rules for targets named SingleTableVirtualMemory
+
+# Build rule for target.
+SingleTableVirtualMemory: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SingleTableVirtualMemory
+.PHONY : SingleTableVirtualMemory
+
+# fast build rule for target.
+SingleTableVirtualMemory/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SingleTableVirtualMemory.dir\build.make CMakeFiles/SingleTableVirtualMemory.dir/build
+.PHONY : SingleTableVirtualMemory/fast
+
+#=============================================================================
+# Target rules for targets named UnreachableFramesVirtualMemory
+
+# Build rule for target.
+UnreachableFramesVirtualMemory: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 UnreachableFramesVirtualMemory
+.PHONY : UnreachableFramesVirtualMemory
+
+# fast build rule for target.
+UnreachableFramesVirtualMemory/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\UnreachableFramesVirtualMemory.dir\build.make CMakeFiles/UnreachableFramesVirtualMemory.dir/build
+.PHONY : UnreachableFramesVirtualMemory/fast
+
+#=============================================================================
+# Target rules for targets named NoEvictionVirtualMemory
+
+# Build rule for target.
+NoEvictionVirtualMemory: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 NoEvictionVirtualMemory
+.PHONY : NoEvictionVirtualMemory
+
+# fast build rule for target.
+NoEvictionVirtualMemory/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NoEvictionVirtualMemory.dir\build.make CMakeFiles/NoEvictionVirtualMemory.dir/build
+.PHONY : NoEvictionVirtualMemory/fast
 
 PhysicalMemory.obj: PhysicalMemory.cpp.obj
 .PHONY : PhysicalMemory.obj
 
 # target to build an object file
 PhysicalMemory.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/PhysicalMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VirtualMemory.dir\build.make CMakeFiles/VirtualMemory.dir/PhysicalMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TestVirtualMemory.dir\build.make CMakeFiles/TestVirtualMemory.dir/PhysicalMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\OffsetDifferentThanIndexMemory.dir\build.make CMakeFiles/OffsetDifferentThanIndexMemory.dir/PhysicalMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SingleTableVirtualMemory.dir\build.make CMakeFiles/SingleTableVirtualMemory.dir/PhysicalMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\UnreachableFramesVirtualMemory.dir\build.make CMakeFiles/UnreachableFramesVirtualMemory.dir/PhysicalMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NoEvictionVirtualMemory.dir\build.make CMakeFiles/NoEvictionVirtualMemory.dir/PhysicalMemory.cpp.obj
 .PHONY : PhysicalMemory.cpp.obj
 
 PhysicalMemory.i: PhysicalMemory.cpp.i
@@ -141,7 +211,12 @@ PhysicalMemory.i: PhysicalMemory.cpp.i
 
 # target to preprocess a source file
 PhysicalMemory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/PhysicalMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VirtualMemory.dir\build.make CMakeFiles/VirtualMemory.dir/PhysicalMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TestVirtualMemory.dir\build.make CMakeFiles/TestVirtualMemory.dir/PhysicalMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\OffsetDifferentThanIndexMemory.dir\build.make CMakeFiles/OffsetDifferentThanIndexMemory.dir/PhysicalMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SingleTableVirtualMemory.dir\build.make CMakeFiles/SingleTableVirtualMemory.dir/PhysicalMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\UnreachableFramesVirtualMemory.dir\build.make CMakeFiles/UnreachableFramesVirtualMemory.dir/PhysicalMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NoEvictionVirtualMemory.dir\build.make CMakeFiles/NoEvictionVirtualMemory.dir/PhysicalMemory.cpp.i
 .PHONY : PhysicalMemory.cpp.i
 
 PhysicalMemory.s: PhysicalMemory.cpp.s
@@ -149,39 +224,25 @@ PhysicalMemory.s: PhysicalMemory.cpp.s
 
 # target to generate assembly for a file
 PhysicalMemory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/PhysicalMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VirtualMemory.dir\build.make CMakeFiles/VirtualMemory.dir/PhysicalMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TestVirtualMemory.dir\build.make CMakeFiles/TestVirtualMemory.dir/PhysicalMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\OffsetDifferentThanIndexMemory.dir\build.make CMakeFiles/OffsetDifferentThanIndexMemory.dir/PhysicalMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SingleTableVirtualMemory.dir\build.make CMakeFiles/SingleTableVirtualMemory.dir/PhysicalMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\UnreachableFramesVirtualMemory.dir\build.make CMakeFiles/UnreachableFramesVirtualMemory.dir/PhysicalMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NoEvictionVirtualMemory.dir\build.make CMakeFiles/NoEvictionVirtualMemory.dir/PhysicalMemory.cpp.s
 .PHONY : PhysicalMemory.cpp.s
-
-SimpleTest.obj: SimpleTest.cpp.obj
-.PHONY : SimpleTest.obj
-
-# target to build an object file
-SimpleTest.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/SimpleTest.cpp.obj
-.PHONY : SimpleTest.cpp.obj
-
-SimpleTest.i: SimpleTest.cpp.i
-.PHONY : SimpleTest.i
-
-# target to preprocess a source file
-SimpleTest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/SimpleTest.cpp.i
-.PHONY : SimpleTest.cpp.i
-
-SimpleTest.s: SimpleTest.cpp.s
-.PHONY : SimpleTest.s
-
-# target to generate assembly for a file
-SimpleTest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/SimpleTest.cpp.s
-.PHONY : SimpleTest.cpp.s
 
 VirtualMemory.obj: VirtualMemory.cpp.obj
 .PHONY : VirtualMemory.obj
 
 # target to build an object file
 VirtualMemory.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/VirtualMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VirtualMemory.dir\build.make CMakeFiles/VirtualMemory.dir/VirtualMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TestVirtualMemory.dir\build.make CMakeFiles/TestVirtualMemory.dir/VirtualMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\OffsetDifferentThanIndexMemory.dir\build.make CMakeFiles/OffsetDifferentThanIndexMemory.dir/VirtualMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SingleTableVirtualMemory.dir\build.make CMakeFiles/SingleTableVirtualMemory.dir/VirtualMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\UnreachableFramesVirtualMemory.dir\build.make CMakeFiles/UnreachableFramesVirtualMemory.dir/VirtualMemory.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NoEvictionVirtualMemory.dir\build.make CMakeFiles/NoEvictionVirtualMemory.dir/VirtualMemory.cpp.obj
 .PHONY : VirtualMemory.cpp.obj
 
 VirtualMemory.i: VirtualMemory.cpp.i
@@ -189,7 +250,12 @@ VirtualMemory.i: VirtualMemory.cpp.i
 
 # target to preprocess a source file
 VirtualMemory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/VirtualMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VirtualMemory.dir\build.make CMakeFiles/VirtualMemory.dir/VirtualMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TestVirtualMemory.dir\build.make CMakeFiles/TestVirtualMemory.dir/VirtualMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\OffsetDifferentThanIndexMemory.dir\build.make CMakeFiles/OffsetDifferentThanIndexMemory.dir/VirtualMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SingleTableVirtualMemory.dir\build.make CMakeFiles/SingleTableVirtualMemory.dir/VirtualMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\UnreachableFramesVirtualMemory.dir\build.make CMakeFiles/UnreachableFramesVirtualMemory.dir/VirtualMemory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NoEvictionVirtualMemory.dir\build.make CMakeFiles/NoEvictionVirtualMemory.dir/VirtualMemory.cpp.i
 .PHONY : VirtualMemory.cpp.i
 
 VirtualMemory.s: VirtualMemory.cpp.s
@@ -197,7 +263,12 @@ VirtualMemory.s: VirtualMemory.cpp.s
 
 # target to generate assembly for a file
 VirtualMemory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TalEliaOs4.dir\build.make CMakeFiles/TalEliaOs4.dir/VirtualMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\VirtualMemory.dir\build.make CMakeFiles/VirtualMemory.dir/VirtualMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TestVirtualMemory.dir\build.make CMakeFiles/TestVirtualMemory.dir/VirtualMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\OffsetDifferentThanIndexMemory.dir\build.make CMakeFiles/OffsetDifferentThanIndexMemory.dir/VirtualMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SingleTableVirtualMemory.dir\build.make CMakeFiles/SingleTableVirtualMemory.dir/VirtualMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\UnreachableFramesVirtualMemory.dir\build.make CMakeFiles/UnreachableFramesVirtualMemory.dir/VirtualMemory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\NoEvictionVirtualMemory.dir\build.make CMakeFiles/NoEvictionVirtualMemory.dir/VirtualMemory.cpp.s
 .PHONY : VirtualMemory.cpp.s
 
 # Help Target
@@ -208,13 +279,15 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... TalEliaOs4
+	@echo ... NoEvictionVirtualMemory
+	@echo ... OffsetDifferentThanIndexMemory
+	@echo ... SingleTableVirtualMemory
+	@echo ... TestVirtualMemory
+	@echo ... UnreachableFramesVirtualMemory
+	@echo ... VirtualMemory
 	@echo ... PhysicalMemory.obj
 	@echo ... PhysicalMemory.i
 	@echo ... PhysicalMemory.s
-	@echo ... SimpleTest.obj
-	@echo ... SimpleTest.i
-	@echo ... SimpleTest.s
 	@echo ... VirtualMemory.obj
 	@echo ... VirtualMemory.i
 	@echo ... VirtualMemory.s
