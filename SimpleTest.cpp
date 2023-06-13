@@ -32,14 +32,14 @@ int main(int argc, char **argv) {
     // print NUM_FRAMES constant
     printf("NUM_FRAMES: %d\n", NUM_FRAMES);
 
-  //printf ("%d\n",TABLES_DEPTH);
+  printf ("%d\n",TABLES_DEPTH);
   VMwrite(1 , 2);
   VMwrite(6, 12);
   VMwrite(6, 12);
   word_t value;
   VMread(1, &value);
   printf ("Value: %d\n",value);
-
+//
 //  for (uint64_t i = 0; i < (2 * NUM_FRAMES); ++i) {
 //        printf("writing to %llu\n", (long long int) i);
 //        VMwrite(5 * i * PAGE_SIZE, i);

@@ -23,20 +23,19 @@ void removeParentPointer (uint64_t farthestPage);
 
 word_t handlePageFault (uint64_t virtualAddress, int tableFromData,uint64_t dontUseFrameIndex)
 {
-  uint64_t farthestPage = 0;
+  uint64_t farthestPage = -1;
   word_t FrameIndex = findNewFrameIndex (virtualAddress, &farthestPage,dontUseFrameIndex);
 
-  if (farthestPage != 0)
+  if (farthestPage != -1)
     {
-      PMevict (FrameIndex, farthestPage);
+      printf ("I AM EVICTED: %d, INDEX: %d\n",farthestPage<<OFFSET_WIDTH,FrameIndex);
+      PMevict (FrameIndex, (farthestPage<<OFFSET_WIDTH)/PAGE_SIZE);
     }
-  else
-    {
-      initFrame (FrameIndex);
-    }
+  initFrame (FrameIndex);
   if (tableFromData == 1)
     {
-      PMrestore (FrameIndex, virtualAddress >> OFFSET_WIDTH);
+      printf ("I WILL RESTORE: %d, INDEX: %d\n",(virtualAddress >> OFFSET_WIDTH)/PAGE_SIZE,FrameIndex);
+      PMrestore (FrameIndex, (virtualAddress >> OFFSET_WIDTH)/PAGE_SIZE);
     }
 
   return FrameIndex;
@@ -50,7 +49,6 @@ word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,
   uint64_t maxDistance = 0;
   uint64_t emptyFrameIndex = 0;
   uint64_t farthestFrameIndex = 0;
-  *farthestPage = 0;
   findMaxDepthAndEmptyFrame (0, 0, &maxFrameUsed, &emptyFrameIndex,dontUseFrameIndex);
   // step 1: if there is an empty frame, return it
   if (emptyFrameIndex != 0)
