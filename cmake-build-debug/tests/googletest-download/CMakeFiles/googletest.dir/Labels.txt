@@ -1,0 +1,14 @@
+# Target labels
+ googletest
+# Source files and their labels
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/CMakeFiles/googletest
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/CMakeFiles/googletest.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/CMakeFiles/googletest-complete.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-build.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-configure.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-download.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-install.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-mkdir.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-patch.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-test.rule
+/cs/usr/suchetzky/os/ex4/cmake-build-debug/tests/googletest-download/googletest-prefix/src/googletest-stamp/googletest-update.rule

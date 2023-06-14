@@ -1,8 +1,11 @@
 
 #pragma once
+
+#include <cstdio>
 #include "VirtualMemory.h"
 #include "PhysicalMemoryOriginal.h"
 
+//TODO: Delete io
 
 void initFrame (word_t FrameIndex);
 word_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,uint64_t dontUseFrameIndex);
@@ -17,7 +20,7 @@ findFarthestPage (uint64_t frameIndex, uint64_t currentAddress, uint64_t virtual
 void removeParentOfFarthest (uint64_t farthestPage);
 void removeParentOfFrame(uint64_t frameIndex,uint64_t curDepth, uint64_t
 deletedFrame);
-
+bool firstCheck(uint64_t virtualAddress);
 word_t handlePageFault (uint64_t virtualAddress, int tableFromData,uint64_t dontUseFrameIndex)
 {
   uint64_t farthestPage = -1;
@@ -32,7 +35,8 @@ word_t handlePageFault (uint64_t virtualAddress, int tableFromData,uint64_t dont
   initFrame (FrameIndex);
   if (tableFromData == 1)
     {
-//      printf ("I WILL RESTORE: %d, INDEX: %d\n",(virtualAddress)/PAGE_SIZE,FrameIndex);
+      //std::printf ("I WILL RESTORE: %d, INDEX: %d\n",(virtualAddress)/PAGE_SIZE,FrameIndex);
+
       PMrestore (FrameIndex, (virtualAddress)/PAGE_SIZE);
     }
 
@@ -254,7 +258,11 @@ void VMinitialize ()
  */
 int VMread (uint64_t virtualAddress, word_t *value)
 {
-  uint64_t physicalAddress;
+//    if (firstCheck(virtualAddress))
+//    {
+//        return -1;
+//    }
+    uint64_t physicalAddress;
   getPhysicalAddress (virtualAddress, &physicalAddress);
   // read the value from the physical address
   PMread (physicalAddress, value);
@@ -269,6 +277,10 @@ int VMread (uint64_t virtualAddress, word_t *value)
  */
 int VMwrite (uint64_t virtualAddress, word_t value)
 {
+//   if (firstCheck(virtualAddress))
+//   {
+//       return -1;
+//   }
   uint64_t physicalAddress = 0;
   getPhysicalAddress (virtualAddress, &physicalAddress);
   // read the value from the physical address
@@ -276,3 +288,14 @@ int VMwrite (uint64_t virtualAddress, word_t value)
   PMwrite (physicalAddress, value);
   return 1;
 }
+
+//bool firstCheck(uint64_t virtualAddress)
+//{
+//    if (NUM_PAGES == 0 || RAM_SIZE == 0 || NUM_FRAMES == 0 || PAGE_SIZE == 0 ||
+//        virtualAddress >= VIRTUAL_MEMORY_SIZE || virtualAddress < 0 ||
+//        TABLES_DEPTH >= NUM_FRAMES)
+//    {
+//        return true;
+//    }
+//    return false;
+//}

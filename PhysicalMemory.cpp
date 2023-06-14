@@ -72,7 +72,8 @@ void PMrestore(uint64_t frameIndex, uint64_t restoredPageIndex) {
 
     if (RAM.empty())
         initialize();
-
+//    std::printf("RAM SIZE: %d, PAGE SIZE: %d\n",RAM_SIZE ,PAGE_SIZE);
+//    std::printf("frame index: %d, NUM FRAMES: %d\n",frameIndex,NUM_FRAMES);
     assert(frameIndex < NUM_FRAMES);
 
     // page is not in swap file, so this is essentially

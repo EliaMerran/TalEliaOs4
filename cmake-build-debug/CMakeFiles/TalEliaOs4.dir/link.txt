@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/TalEliaOs4.dir/PhysicalMemoryOriginal.cpp.o CMakeFiles/TalEliaOs4.dir/SimpleTest.cpp.o CMakeFiles/TalEliaOs4.dir/VirtualMemory.cpp.o -o TalEliaOs4 
