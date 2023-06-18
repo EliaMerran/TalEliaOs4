@@ -1,6 +1,3 @@
-
-#pragma once
-
 #include "VirtualMemory.h"
 #include "PhysicalMemory.h"
 
