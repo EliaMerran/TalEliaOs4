@@ -4,13 +4,15 @@
 #include "VirtualMemory.h"
 #include "PhysicalMemory.h"
 
-/**
- * Initialize the given frame.
- * @param FrameIndex the index of the frame to initialize
- */
-void initFrame (uint64_t FrameIndex);
 
-
+void initFrame (uint64_t FrameIndex)
+{
+    for (int i = 0; i < PAGE_SIZE; ++i) {
+        PMwrite(FrameIndex * PAGE_SIZE + i,0);
+    }
+}
+uint64_t min (uint64_t  a, uint64_t  b);
+uint64_t abs_diff (uint64_t a,  uint64_t b);
 /**
  * Finds a new frame index to use, with priorities specified in pdf
  * @param virtualAddress virtual address to find a frame for
@@ -19,31 +21,7 @@ void initFrame (uint64_t FrameIndex);
  * @return
  */
 uint64_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,
-                            uint64_t dontUseFrameIndex)
-{
-  uint64_t maxFrameUsed = 0;
-  uint64_t maxDistance = 0;
-  uint64_t emptyFrameIndex = 0;
-  uint64_t farthestFrameIndex = 0;
-  findMaxDepthAndEmptyFrame (0, 0, &maxFrameUsed, &emptyFrameIndex,dontUseFrameIndex);
-  // step 1: if there is an empty frame, return it
-  if (emptyFrameIndex != 0)
-    {
-      removeParentOfFrame(0,0,emptyFrameIndex);
-      return emptyFrameIndex;
-    }
-  // step 2: return the max depth + 1
-  if (maxFrameUsed + 1 < NUM_FRAMES)
-    {
-      return maxFrameUsed + 1;
-    }
-  // step 3 : find the farthest page
-  findFarthestPage (0, 0, virtualAddress >> OFFSET_WIDTH, farthestPage,
-                    &farthestFrameIndex, &maxDistance, 0);
-  removeParentOfFarthest ((*farthestPage) << OFFSET_WIDTH);
-  PMevict (farthestFrameIndex, ((*farthestPage)<<OFFSET_WIDTH)/PAGE_SIZE);
-  return farthestFrameIndex;
-}
+                            uint64_t dontUseFrameIndex);
 
 /**
  * this function finds with DFS the current max frame index
@@ -224,9 +202,6 @@ uint64_t min (uint64_t  a, uint64_t  b)
 
 uint64_t abs_diff (uint64_t a,  uint64_t b)
 {
-//  if (a < 0)
-//    return -a;
-//  return a;
     if (a > b)
     {
         return a-b;
@@ -303,3 +278,31 @@ int VMwrite (uint64_t virtualAddress, word_t value)
   PMwrite (physicalAddress, value);
   return 1;
 }
+
+uint64_t findNewFrameIndex (uint64_t virtualAddress, uint64_t *farthestPage,
+                            uint64_t dontUseFrameIndex)
+{
+    uint64_t maxFrameUsed = 0;
+    uint64_t maxDistance = 0;
+    uint64_t emptyFrameIndex = 0;
+    uint64_t farthestFrameIndex = 0;
+    findMaxDepthAndEmptyFrame (0, 0, &maxFrameUsed, &emptyFrameIndex,dontUseFrameIndex);
+    // step 1: if there is an empty frame, return it
+    if (emptyFrameIndex != 0)
+    {
+        removeParentOfFrame(0,0,emptyFrameIndex);
+        return emptyFrameIndex;
+    }
+    // step 2: return the max depth + 1
+    if (maxFrameUsed + 1 < NUM_FRAMES)
+    {
+        return maxFrameUsed + 1;
+    }
+    // step 3 : find the farthest page
+    findFarthestPage (0, 0, virtualAddress >> OFFSET_WIDTH, farthestPage,
+                      &farthestFrameIndex, &maxDistance, 0);
+    removeParentOfFarthest ((*farthestPage) << OFFSET_WIDTH);
+    PMevict (farthestFrameIndex, ((*farthestPage)<<OFFSET_WIDTH)/PAGE_SIZE);
+    return farthestFrameIndex;
+}
+
